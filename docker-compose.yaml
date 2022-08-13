@@ -114,6 +114,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: -config.file=/etc/promtail/config.yaml
     depends_on:
-      - gateway
+      - loki-gateway
     networks:
       - loki
