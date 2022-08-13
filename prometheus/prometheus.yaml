@@ -14,6 +14,14 @@ rule_files:
 
 # A list of scrape configurations.
 scrape_configs:
+  # A scrape configuration containing exactly one endpoint to scrape:
+  # Here it's Prometheus itself.
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
   - job_name: local_docker  # https://prometheus.io/docs/prometheus/latest/configuration/configuration/#docker_sd_config
     # honor_labels controls how Prometheus handles conflicts between labels that are
     # already present in scraped data and labels that Prometheus would attach
