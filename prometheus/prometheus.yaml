@@ -92,7 +92,7 @@ scrape_configs:
 
 # The port to scrape metrics from, when `role` is nodes, and for discovered
 # tasks and services that don't have published ports.
-[ port: <int> | default = 80 ]
+# [ port: <int> | default = 80 ]
 
 # Alerting specifies settings related to the Alertmanager.
 # alerting:
