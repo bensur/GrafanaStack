@@ -4,11 +4,13 @@ volumes:
   grafana_data:
   prometheus_data:
   minio_data:
+  tempo_data:
 
 networks:
   loki:
   prometheus:
   grafana:
+  tempo:
 
 services:
   grafana:
@@ -103,9 +105,10 @@ services:
       - |
         mkdir -p /data/loki-data && \
         mkdir -p /data/loki-ruler && \
+        mkdir -p /data/tempo && \
         minio server /data
     environment:
-      - MINIO_ACCESS_KEY=loki
+      - MINIO_ACCESS_KEY=minio
       - MINIO_SECRET_KEY=supersecret
       - MINIO_PROMETHEUS_AUTH_TYPE=public
       - MINIO_UPDATE=off
@@ -115,6 +118,7 @@ services:
       - minio_data:/data
     networks:
       - loki
+      - tempo
   promtail:
     image: grafana/promtail:2.6.1
     container_name: promtail
@@ -126,3 +130,13 @@ services:
       - loki-gateway
     networks:
       - loki
+  tempo:
+    image: grafana/tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./tempo/tempo-s3.yaml:/etc/tempo.yaml
+      - tempo_data:/tempo
+    ports:
+      - "3200:3200"
+    depends_on:
+      - minio

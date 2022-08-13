@@ -21,7 +21,7 @@ common:
       endpoint: minio:9000
       insecure: true
       bucketnames: loki-data
-      access_key_id: loki
+      access_key_id: minio
       secret_access_key: supersecret
       s3forcepathstyle: true
   ring:
@@ -33,6 +33,6 @@ ruler:
       bucketnames: loki-ruler
       endpoint: minio:9000
       insecure: true
-      access_key_id: loki
+      access_key_id: minio
       secret_access_key: supersecret
       s3forcepathstyle: true
