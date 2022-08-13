@@ -132,6 +132,7 @@ services:
       - loki
   tempo:
     image: grafana/tempo
+    container_name: tempo
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
       - ./tempo/tempo-s3.yaml:/etc/tempo.yaml
