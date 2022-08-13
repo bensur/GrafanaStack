@@ -28,8 +28,6 @@ services:
     #  - GF_INSTALL_PLUGINS=""
     networks:
       - grafana
-      - prometheus
-      - loki
   prometheus:
     image: prom/prometheus
     container_name: prometheus
