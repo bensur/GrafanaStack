@@ -37,7 +37,7 @@ storage:
       index_downsample_bytes: 1000     # number of bytes per index record
       encoding: zstd                   # block encoding/compression.  options: none, gzip, lz4-64k, lz4-256k, lz4-1M, lz4, snappy, zstd, s2
     wal:
-      path: /tempo/wal             # where to store the the wal locally
+      path: /tmp/tempo                 # where to store the the wal locally
       encoding: snappy                 # wal encoding/compression.  options: none, gzip, lz4-64k, lz4-256k, lz4-1M, lz4, snappy, zstd, s2
     s3:
       bucket: tempo                    # how to store data in s3
